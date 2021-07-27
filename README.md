@@ -1,24 +1,57 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column                        | Type     | Options     |
+| ----------------------------- | -------- | ----------- |
+| email                         | string   | null: false |
+| encrypted_password            | string   | null: false |
+| nickname                      | string   | null: false |
+| family_name                   | text     | null: false |
+| first_name                    | text     | null: false |
+| family_name_reading           | string   | null: false |
+| first_name_reading            | string   | null: false |
+| birth_year                    | string   | null: false |
+| birth_month                   | string   | null: false |
+| birth_day                     | string   | null: false |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :goods
+- belongs_to :purchases
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## goods テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column                        | Type     | Options                          |
+| ----------------------------- | -------- | -------------------------------- |
+| name                          | string   | null: false                      |
+| comments                      | text     | null: false                      |
+| price                         | integer  | null: false                      |
+| user                          | references | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :users
+- belongs_to :purchases
+
+
+
+
+## purchases テーブル
+
+| Column                        | Type     | Options                          |
+| ----------------------------- | -------- | -------------------------------- |
+| postal_code                   | string   | null: false                      |
+| city                          | string   | null: false                      |
+| house_number                  | string   | null: false                      |
+| building_number               | string   |                                  |
+| user                          | references | null: false, foreign_key: true |
+| good                          | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :users
+- belongs_to :goods
