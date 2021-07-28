@@ -15,9 +15,9 @@
 
 ### Association
 
-- has_many :items
- belongs_to :address
-
+has_many :items
+belongs_to :address
+has_many : user-item
 
 
 ## user-item テーブル
@@ -29,11 +29,8 @@
 
 ### Association
 
-has_many :users
+belongs_to :user
 has_many :items
-
-
-
 
 
 
@@ -47,14 +44,14 @@ has_many :items
 | category_id                   | integer  | null: false                      |
 | condition_id                  | integer  | null: false                      |
 | delivery_fee_id               | integer  | null: false                      |
-| shipment_area_id              | integer  | null: false                      |
+| prefecture_id                 | integer  | null: false                      |
 | shipment_day_id               | integer  | null: false                      |
 | user                          | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :address
+- belongs_to :user-item
 
 
 
@@ -63,12 +60,12 @@ has_many :items
 | Column                        | Type     | Options                          |
 | ----------------------------- | -------- | -------------------------------- |
 | postal_code                   | string   | null: false                      |
-| prefecture_id                 | string   | null: false                      |
+| prefecture_id                 | integer  | null: false                      |
 | city                          | string   | null: false                      |
 | house_number                  | string   | null: false                      |
 | building_number               | string   |                                  |
-
-
+| phone_number                  | string   | null: false                      |
+|user                           | reference| null: false, foreign_key: true   |
 ### Association
 
 - belongs_to :user
