@@ -16,7 +16,6 @@
 ### Association
 
 has_many :items
-belongs_to :address
 has_many : user-item
 
 
@@ -30,7 +29,8 @@ has_many : user-item
 ### Association
 
 belongs_to :user
-has_many :items
+belongs_to :item
+belongs_to :address
 
 
 
@@ -50,8 +50,8 @@ has_many :items
 
 ### Association
 
-- belongs_to :user
-- belongs_to :user-item
+- has_one :user
+- has_one :user-item
 
 
 
@@ -65,8 +65,9 @@ has_many :items
 | house_number                  | string   | null: false                      |
 | building_number               | string   |                                  |
 | phone_number                  | string   | null: false                      |
-|user                           | reference| null: false, foreign_key: true   |
+| user-item                     | references | null: false, foreign_key: true |
+
+
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :user-item
