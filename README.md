@@ -16,10 +16,10 @@
 ### Association
 
 has_many :items
-has_many : user-items
+has_many : user_items
 
 
-## user-item テーブル
+## user_item テーブル
 
 | Column                        | Type        | Options                                  | 
 | ----------------------------- | ----------- | ---------------------------------------- |
@@ -51,7 +51,7 @@ has_one :address
 ### Association
 
 - belongs_to :user
-- has_one :user-item
+- has_one :user_item
 
 
 
@@ -70,4 +70,4 @@ has_one :address
 
 ### Association
 
-- belongs_to :user-item
+- belongs_to :user_item
