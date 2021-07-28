@@ -16,7 +16,7 @@
 ### Association
 
 has_many :items
-has_many : user-item
+has_many : user-items
 
 
 ## user-item テーブル
@@ -30,7 +30,7 @@ has_many : user-item
 
 belongs_to :user
 belongs_to :item
-belongs_to :address
+has_one :address
 
 
 
@@ -50,7 +50,7 @@ belongs_to :address
 
 ### Association
 
-- has_one :user
+- belongs_to :user
 - has_one :user-item
 
 
