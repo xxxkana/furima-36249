@@ -40,12 +40,12 @@ has_one :address
 | name                          | string   | null: false                      |
 | comments                      | text     | null: false                      |
 | price                         | integer  | null: false                      |
-| category_id                   | integer  | foreign_key: true                |
-| condition_id                  | integer  | foreign_key: true                |
-| delivery_fee_id               | integer  | foreign_key: true                |
-| prefecture_id                 | integer  | foreign_key: true                |
+| category_id                   | integer  | null: false                      |
+| condition_id                  | integer  | null: false                      |
+| delivery_fee_id               | integer  | null: false                      |
+| prefecture_id                 | integer  | null: false                      |
 | user                          | references | foreign_key: true              |
-| shipment_day_id               | integer  | foreign_key: true                |
+| shipment_day_id               | integer  | null: false                      |
 
 
 ### Association
@@ -60,7 +60,7 @@ has_one :address
 | Column                        | Type     | Options                          |
 | ----------------------------- | -------- | -------------------------------- |
 | postal_code                   | string   | null: false                      |
-| prefecture_id                 | integer  | foreign_key: true                |
+| prefecture_id                 | integer  | null: false                     |
 | city                          | string   | null: false                      |
 | house_number                  | string   | null: false                      |
 | building_number               | string   |                                  |
