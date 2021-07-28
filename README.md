@@ -19,7 +19,7 @@ has_many :items
 has_many : user_items
 
 
-## user_item テーブル
+## user_items テーブル
 
 | Column                        | Type        | Options                                  | 
 | ----------------------------- | ----------- | ---------------------------------------- |
@@ -65,7 +65,7 @@ has_one :address
 | house_number                  | string   | null: false                      |
 | building_number               | string   |                                  |
 | phone_number                  | string   | null: false                      |
-| user-item                     | references | null: false, foreign_key: true |
+| user_item                     | references | null: false, foreign_key: true |
 
 
 ### Association
