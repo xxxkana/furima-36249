@@ -19,12 +19,15 @@ has_many :items
 has_many : user_items
 
 
-## user_items テーブル
+## user_items テーブル(購入記録)
 
 | Column                        | Type        | Options                       | 
 | ----------------------------- | ----------- | ------------------------------|
 | user                          | references | foreign_key: true              |    
 | item                          | references | foreign_key: true              |
+
+
+
 ### Association
 
 belongs_to :user
@@ -60,7 +63,7 @@ has_one :address
 | Column                        | Type     | Options                          |
 | ----------------------------- | -------- | -------------------------------- |
 | postal_code                   | string   | null: false                      |
-| prefecture_id                 | integer  | null: false                     |
+| prefecture_id                 | integer  | null: false                      |
 | city                          | string   | null: false                      |
 | house_number                  | string   | null: false                      |
 | building_number               | string   |                                  |
