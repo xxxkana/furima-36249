@@ -1,7 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :items
-  has_many :user_items
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   validates :email,               presence: true
   validates :nickname,            presence: true
