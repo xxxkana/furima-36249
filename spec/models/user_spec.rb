@@ -27,8 +27,10 @@ RSpec.describe User, type: :model do
       expect(@user).to be_valid
    end
 
-   end
-
+    it "全て入力値が正しい場合登録ができる" do
+    expect(@user).to be_valid
+    end
+  end
    
    context "新規登録がうまくいかない時" do
     it "emailが空だと登録できない" do
@@ -95,7 +97,7 @@ RSpec.describe User, type: :model do
     it "passwordは6文字以上でないと登録できない" do
       @user.password ='12'
       @user.valid?
-      expect(@user.errors.full_messages).to include()
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end  
 
     it "passwordは、半角英数字混合でないと登録できない" do
@@ -113,7 +115,7 @@ RSpec.describe User, type: :model do
     it "passwordが全角の時登録できない" do
       @user.password ='１１１１１１'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      expect(@user.errors.full_messages).to include("Password is invalid")
     end  
 
     it "パスワードとパスワード（確認）は、値の一致してないと登録できない" do
@@ -149,4 +151,4 @@ RSpec.describe User, type: :model do
 
    end 
 
-end
+  end
