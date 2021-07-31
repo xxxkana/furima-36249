@@ -15,7 +15,6 @@
       <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
     </ul>
     <ul class='lists-right'>
-      <%# ログインの有無で表示を変える%>
       <% if user_signed_in?%>
         <li><%= link_to current_user.nickname, edit_user_registration_path , class: "user-nickname"%> </li> 
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout"%> </li> 
