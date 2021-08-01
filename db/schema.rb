@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_08_01_060933) do
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
+ActiveRecord::Schema.define(version: 2021_07_29_040742) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
