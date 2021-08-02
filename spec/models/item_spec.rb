@@ -54,11 +54,36 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Shipment day can't be blank")
     end
 
+    it 'アクティブハッシュのカラムが１では登録できない' do
+      @item.category_id = 1
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Category can't be blank")
+    end
+
     it "priceが空だと登録できない" do
       @item.price = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Price can't be blank")
     end
+
+    it "priceを全角文字で入力すると登録できない" do
+      @item.price ='１０００'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+
+    it "priceを半角英数字混合で入力すると登録できない" do
+      @item.price ='1400a'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+
+    it "priceを半角英語で入力すると登録できない" do
+      @item.price ='aaa'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not a number")
+    end
+
     
     it 'ユーザーと紐付いていなければ出品できない' do
       @item.user = nil

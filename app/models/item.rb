@@ -14,5 +14,5 @@ class Item < ApplicationRecord
 
   validates :name, length: {maximum: 40}
   validates :comments, length: {maximum: 1000}
-  validates :price, numericality: {greater_than: 300, less_than: 99999999}
+  validates :price, numericality: {greater_than: 300, less_than: 99999999}, format: {with: /\A[0-9]+\z/}
 end
