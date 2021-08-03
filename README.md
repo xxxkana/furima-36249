@@ -44,8 +44,9 @@ has_one :address
 | condition_id                  | integer  | null: false                      |
 | delivery_fee_id               | integer  | null: false                      |
 | prefecture_id                 | integer  | null: false                      |
-| user                          | references | foreign_key: true              |
 | shipment_day_id               | integer  | null: false                      |
+| user                          | references | foreign_key: true              |
+
 
 
 ### Association

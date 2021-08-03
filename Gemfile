@@ -57,6 +57,9 @@ group :development do
   gem 'rubocop', require: false
 end
 
+gem 'active_hash'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
 gem 'devise'
 gem 'pry-rails'
 gem 'rspec-rails', '~> 4.0.0'
