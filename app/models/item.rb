@@ -8,17 +8,11 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :image, :price,:category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id
- end
-
- with_options presence: true do
-  validates :name, length: {maximum: 40}
- end
-
- with_options presence: true do
-  validates :comments, length: {maximum: 1000}
+    validates :name, length: {maximum: 40}
+    validates :comments, length: {maximum: 1000}
  end
 
   validates :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id, numericality: { other_than: 1, message: "can't be blank"} 
 
-  validates :price, numericality: {greater_than: 300, less_than: 99999999}, format: {with: /\A[0-9]+\z/}
+  validates :price, numericality: {greater_than: 300, less_than: 9999999}, format: {with: /\A[0-9]+\z/}
 end

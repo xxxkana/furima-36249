@@ -110,7 +110,19 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Price is not a number")
     end
 
-    
+    it "priceを299円以下に設定すると登録できない" do
+      @item.price = 150
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price must be greater than 300")
+    end
+
+    it "priceを10,000,000円以上に設定すると登録できない" do
+      @item.price = 10,678,000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is invalid")
+    end
+
+
     it 'ユーザーと紐付いていなければ出品できない' do
       @item.user = nil
       @item.valid?
