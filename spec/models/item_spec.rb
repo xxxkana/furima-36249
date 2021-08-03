@@ -24,6 +24,12 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Name can't be blank")
     end
 
+    it "commentsが空だと登録できない" do
+      @item.comments = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Comments can't be blank")
+    end
+
     it "category_idが選択されてないと登録できない" do
       @item.category_id = nil
       @item.valid?
