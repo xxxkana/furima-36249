@@ -1,9 +1,9 @@
 class UserItemController < ApplicationController
   before_action :authenticate_user!
   before_action :move_to_index, only: [:index, :create]
+  before_action :set_find, only: [:index, :create] 
 
   def index
-    @item = Item.find(params[:item_id])
     @user_item =AddressUserItem.new
 
   end  
@@ -12,7 +12,6 @@ class UserItemController < ApplicationController
 
   
   def create
-    @item = Item.find(params[:item_id])
     @user_item = AddressUserItem.new(user_item_params)
     if @user_item.valid?
       pay_item
@@ -27,13 +26,16 @@ class UserItemController < ApplicationController
 
   private
 
+  def set_find
+    @item = Item.find(params[:item_id])
+  end  
+
   def user_item_params
     params.require(:address_user_item).permit(:postal_code, :prefecture_id, :city, :house_number, :building_number, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end  
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-    Payjp.api_key = "sk_test_50e0bd5213eacb07f04a8494"
     Payjp::Charge.create(
       amount: @item.price,
       card: user_item_params[:token],

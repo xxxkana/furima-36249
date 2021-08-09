@@ -8,13 +8,19 @@ RSpec.describe AddressUserItem, type: :model do
   describe "新規購入" do
     context '新規購入ができる時' do
       it "phone_numberが11桁の時購入ができる" do
-        @address_user_item.phone_number = "12345678956"
+        @address_user_item.phone_number = 12345678956
         expect(@address_user_item).to be_valid
         end
 
       it "全て入力値が正しい場合購入ができる" do
         expect(@address_user_item).to be_valid
         end
+
+      it "建物名が空の場合でも購入できること" do
+        @address_user_item.building_number = ''
+        expect(@address_user_item).to be_valid
+        end
+
     end
   
 
@@ -49,6 +55,12 @@ RSpec.describe AddressUserItem, type: :model do
         expect(@address_user_item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
+      it 'prefecture_idのアクティブハッシュのカラムが0では登録できない' do
+        @address_user_item.prefecture_id = 0
+        @address_user_item.valid?
+        expect(@address_user_item.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
       it "cityが空だと購入できない" do
         @address_user_item.city = ''
         @address_user_item.valid?
@@ -72,6 +84,31 @@ RSpec.describe AddressUserItem, type: :model do
         @address_user_item.valid?
         expect(@address_user_item.errors.full_messages).to include("Phone number is invalid")
       end
+
+      it "phone_numberが12桁以上の時購入できない" do
+        @address_user_item.phone_number = '01234567890234'
+        @address_user_item.valid?
+        expect(@address_user_item.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "phone_numberが英数混同の時購入できない" do
+        @address_user_item.phone_number = '01abg567890234'
+        @address_user_item.valid?
+        expect(@address_user_item.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "user_idが空では購入できない" do
+        @address_user_item.user_id = nil
+        @address_user_item.valid?
+        expect(@address_user_item.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "item_idが空では購入できない" do
+        @address_user_item.item_id = nil
+        @address_user_item.valid?
+        expect(@address_user_item.errors.full_messages).to include("Item can't be blank")
+      end
+
     end
   end
 end
