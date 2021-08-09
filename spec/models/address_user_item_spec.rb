@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe AddressUserItem, type: :model do
   before do
-    @address_user_item = FactoryBot.build(:address_user_item)
+    item = FactoryBot.create(:item)
+    user = FactoryBot.create(:user)
+    @address_user_item= FactoryBot.build(:address_user_item, item_id: item.id, user_id: user.id)
+    sleep 0.1
   end
 
   describe "新規購入" do

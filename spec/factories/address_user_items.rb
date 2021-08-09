@@ -7,7 +7,5 @@ FactoryBot.define do
     house_number {"中区山下町1-89-1"}
     building_number {"山下町ビル"}
     phone_number {"0123456789"}
-    user_id {Faker::Number.between(from: 1, to: 10)}
-    item_id {Faker::Number.between(from: 1, to: 10)}
   end
 end
