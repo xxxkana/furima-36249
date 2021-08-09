@@ -5,7 +5,6 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.order("created_at DESC")
-
   end
 
   def new
@@ -54,12 +53,15 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:image, :name, :comments, :price, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id).merge(user_id: current_user.id)
   end
 
-  def move_to_index
-    redirect_to root_path unless current_user == @item.user
-  end
-
   def set_item
     @item = Item.find(params[:id])
   end  
+
+  def move_to_index
+    if current_user != @item.user || @item.user_item != nil 
+       redirect_to root_path 
+    end
+  end
+
   
 end

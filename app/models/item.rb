@@ -9,6 +9,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :user_item
 
   with_options presence: true do
     validates :image, :price,:category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id
