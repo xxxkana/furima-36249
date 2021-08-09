@@ -1,6 +1,6 @@
 class UserItemController < ApplicationController
-  before_action :authenticate_user!, except: :index
-  before_action :move_to_index, only: :index
+  before_action :authenticate_user!
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @item = Item.find(params[:item_id])
