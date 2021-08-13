@@ -5,10 +5,12 @@ class ItemsController < ApplicationController
   
   def index
     @items = Item.order("created_at DESC")
+    
   end
 
   def new
     @item = Item.new
+    @item_tag = ItemsTag.new
   end
 
   def create
@@ -18,10 +20,19 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+
+    @item = ItemsTag.new(item_tag_params)
+    if @item.valid?
+      @item.save
+      return redirect_to root_path
+    else
+      render "new"
+    end
   end
 
   def show
     @user = User.find_by(id: @item[:user_id]) 
+    @item_tag = ItemsTag.find(params[:id])
   end
 
   def edit
@@ -44,8 +55,6 @@ class ItemsController < ApplicationController
       end
   end  
 
-#end
-
   
   private
 
@@ -62,6 +71,8 @@ class ItemsController < ApplicationController
        redirect_to root_path 
     end
   end
-
+  def item_tag_params
+    params.require(:items_tag).permit(:item_id, :tag_id)
+  end
   
 end
