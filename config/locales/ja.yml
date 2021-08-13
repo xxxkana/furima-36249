@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        Family name: 苗字
+        First  name: 名前  
+        Family name reading: 苗字カナ
+        Family name reading: 名前カナ
+        Datetime           : 生年月日
+      
