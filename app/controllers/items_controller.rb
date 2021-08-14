@@ -9,21 +9,13 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    @item_tag = ItemsTag.new
+    @items_tag = ItemsTag.new
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path
-    else
-      render :new
-    end
-
-    @item = ItemsTag.new(item_tag_params)
-    if @item.valid?
-      @item.save
+    @items_tag = ItemsTag.new(item_params)
+    if @items_tag.valid?
+      @items_tag.save
       return redirect_to root_path
     else
       render "new"
@@ -32,7 +24,7 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find_by(id: @item[:user_id]) 
-    @item_tag = ItemsTag.find(params[:id])
+    @tag = @item.tags[0]
   end
 
   def edit
@@ -40,15 +32,15 @@ class ItemsController < ApplicationController
   end  
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path(@item)
+    if @items_tag.update(item_params)
+      redirect_to item_path(@items_tag)
     else
       render :edit
     end
   end
 
   def destroy
-      if @item.destroy
+      if @items_tag.destroy
         redirect_to root_path
       else
         render :show
@@ -59,7 +51,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:image, :name, :comments, :price, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id).merge(user_id: current_user.id)
+    params.require(:items_tag).permit(:tag_name, :image, :name, :comments, :price, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -67,12 +59,9 @@ class ItemsController < ApplicationController
   end  
 
   def move_to_index
-    if current_user != @item.user || @item.user_item != nil 
+    if current_user != @items_tag.user || @items_tag.user_item != nil 
        redirect_to root_path 
     end
-  end
-  def item_tag_params
-    params.require(:items_tag).permit(:item_id, :tag_id)
   end
   
 end

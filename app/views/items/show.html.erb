@@ -49,7 +49,9 @@
         </tr>
         <tr>
           <th class="detail-item">ブランド</th>
-          <td class="detail-value"><%= tag.tag_name %></td>
+          <% if  @tag != nil %>
+          <td class="detail-value"><%= @tag.tag_name %></td>
+          <% end %>
         </tr>
         <tr>
           <th class="detail-item">商品の状態</th>
