@@ -72,3 +72,18 @@ has_one :address
 ### Association
 
 - belongs_to :user-item
+
+
+## tags テーブル
+
+| Column                        | Type     | Options                          |
+| ----------------------------- | -------- | -------------------------------- |
+| tag_name                          | string   | null: false                      |
+
+
+## item_tag_relations テーブル
+
+| Column                        | Type       | Options                          |
+| ----------------------------- | ---------- | -------------------------------- |
+| item                          | references | foreign_key: true                | 
+| tag_name                           | references | foreign_key: true                |

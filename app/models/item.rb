@@ -10,8 +10,15 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_one :user_item
+
   has_many :messages
   
+
+
+  has_many :item_tag_relations
+  has_many :tags, through: :item_tag_relations
+
+
   with_options presence: true do
     validates :image, :price,:category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id
     validates :name, length: {maximum: 40}
