@@ -24,7 +24,12 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find_by(id: @item[:user_id]) 
+
+    @message = Message.new
+    @messages = Message.all
+
     @tag = @item.tags[0]
+
   end
 
   def edit
@@ -63,5 +68,9 @@ class ItemsController < ApplicationController
        redirect_to root_path 
     end
   end
+
+
+
   
+
 end
