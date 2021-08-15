@@ -22,6 +22,8 @@ class ItemsController < ApplicationController
 
   def show
     @user = User.find_by(id: @item[:user_id]) 
+    @message = Message.new
+    @messages = Message.all
   end
 
   def edit

@@ -1,11 +1,9 @@
 class MessagesController < ApplicationController
-  def new
-    @message = Message.new
-    @messages = Message.all
-
-  end
-
+  
   def create
-    @message = Message.new(text: params[:message][:text])
+    @message = Message.new(text: params[:message][:text], item_id: params[:item_id])
+    if @message.save
+      ActionCable.server.broadcast 'message_channel', content: @message
+    end
   end
 end
