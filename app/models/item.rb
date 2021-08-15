@@ -13,11 +13,16 @@ class Item < ApplicationRecord
 
   has_many :messages
   
-
-
   has_many :item_tag_relations
   has_many :tags, through: :item_tag_relations
 
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 
   with_options presence: true do
     validates :image, :price,:category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id
