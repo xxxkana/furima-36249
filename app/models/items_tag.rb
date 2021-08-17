@@ -9,6 +9,8 @@ class ItemsTag
     validates :tag_name, length: {maximum: 40}
   end
 
+  
+
   def save
     item = Item.create(image: image, name:name, comments:comments, price:price, category_id:category_id, condition_id:condition_id, delivery_fee_id:delivery_fee_id, prefecture_id:prefecture_id, shipment_day_id:shipment_day_id, user_id:user_id)
     tag = Tag.where(tag_name: tag_name).first_or_initialize
