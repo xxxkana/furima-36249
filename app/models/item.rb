@@ -9,6 +9,20 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :user_item
+
+  has_many :messages
+  
+  has_many :item_tag_relations
+  has_many :tags, through: :item_tag_relations
+
+  def self.search(search)
+    if search != ""
+      Item.where('name LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 
   with_options presence: true do
     validates :image, :price,:category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id
@@ -16,7 +30,7 @@ class Item < ApplicationRecord
     validates :comments, length: {maximum: 1000}
  end
 
-  validates :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id, numericality: { other_than: 1, message: "can't be blank"} 
+  validates :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id, numericality: { other_than: 1, message: "を選択してください"} 
 
-  validates :price, numericality: {greater_than: 300, less_than: 9999999}, format: {with: /\A[0-9]+\z/}
+  validates :price, numericality: {greater_than: 299, less_than: 10000000}, format: {with: /\A[0-9]+\z/}
 end
