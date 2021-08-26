@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column                        | Type     | Options     |
-| ----------------------------- | -------- | ----------- |
-| nickname                      | string   | null: false |
+| Column                        | Type     | Options                  |
+| ----------------------------- | -------- | ------------------------ |
+| nickname                      | string   | null: false              |
 | email                         | string   | null: false, unique: true|
-| encrypted_password            | string   | null: false |
-| family_name                   | string   | null: false |
-| first_name                    | string   | null: false |
-| family_name_reading           | string   | null: false |
-| first_name_reading            | string   | null: false |
-| datetime                      | date     | null: false |
+| encrypted_password            | string   | null: false              |
+| family_name                   | string   | null: false              |
+| first_name                    | string   | null: false              |
+| family_name_reading           | string   | null: false              |
+| first_name_reading            | string   | null: false              |
+| datetime                      | date     | null: false              |
 
 ### Association
 
@@ -21,8 +21,8 @@ has_many : user-items
 
 ## user-items テーブル
 
-| Column                        | Type        | Options                       | 
-| ----------------------------- | ----------- | ------------------------------|
+| Column                        | Type       | Options                        | 
+| ----------------------------- | -----------| -------------------------------|
 | user                          | references | foreign_key: true              |    
 | item                          | references | foreign_key: true              |
 ### Association
@@ -61,7 +61,7 @@ has_one :address
 | Column                        | Type     | Options                          |
 | ----------------------------- | -------- | -------------------------------- |
 | postal_code                   | string   | null: false                      |
-| prefecture_id                 | integer  | null: false                     |
+| prefecture_id                 | integer  | null: false                      |
 | city                          | string   | null: false                      |
 | house_number                  | string   | null: false                      |
 | building_number               | string   |                                  |
@@ -78,7 +78,7 @@ has_one :address
 
 | Column                        | Type     | Options                          |
 | ----------------------------- | -------- | -------------------------------- |
-| tag_name                          | string   | null: false                      |
+| tag_name                      | string   | null: false                      |
 
 
 ## item_tag_relations テーブル
@@ -86,4 +86,4 @@ has_one :address
 | Column                        | Type       | Options                          |
 | ----------------------------- | ---------- | -------------------------------- |
 | item                          | references | foreign_key: true                | 
-| tag_name                           | references | foreign_key: true                |
+| tag_name                      | references | foreign_key: true                |

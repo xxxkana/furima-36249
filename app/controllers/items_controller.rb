@@ -33,12 +33,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
-  
+    
   end  
 
   def update
-    if @items_tag.update(item_params)
-      redirect_to item_path(@items_tag)
+    if @item.update(item_update_params)
+      redirect_to item_path(@item)
     else
       render :edit
     end
@@ -64,14 +64,19 @@ class ItemsController < ApplicationController
     params.require(:items_tag).permit(:tag_name, :image, :name, :comments, :price, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id).merge(user_id: current_user.id)
   end
 
+  def item_update_params
+    params.require(:item).permit(:image, :name, :comments, :price, :category_id, :condition_id, :delivery_fee_id, :prefecture_id, :shipment_day_id).merge(user_id: current_user.id)
+  end  
+
   def set_item
     @item = Item.find(params[:id])
   end  
 
+
   def move_to_index
-    if current_user != @items_tag.user || @items_tag.user_item != nil 
+    if current_user != @item.user || @item.user_item != nil 
        redirect_to root_path 
-    end
+  end
   end
 
 
