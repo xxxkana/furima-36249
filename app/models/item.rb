@@ -18,7 +18,9 @@ class Item < ApplicationRecord
 
   def self.search(search)
     if search != ""
-      Item.where('name LIKE(?)', "%#{search}%")
+      tag = Tag.where('tag_name LIKE(?)', "%#{search}%")
+      item = tag[0].items
+      return item
     else
       Item.all
     end
