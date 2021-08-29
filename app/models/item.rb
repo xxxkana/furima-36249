@@ -11,9 +11,9 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :user_item
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
   
-  has_many :item_tag_relations
+  has_many :item_tag_relations, dependent: :destroy
   has_many :tags, through: :item_tag_relations
 
   def self.search(search)
