@@ -45,16 +45,16 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-      if @items_tag.destroy
-        redirect_to root_path
-      else
-        render :show
-      end
+    @items_tag = Item.find(params[:id])
+    if @items_tag.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
   end  
 
   def search
     @items = Item.search(params[:keyword])
-    binding.pry
   end
 
 
