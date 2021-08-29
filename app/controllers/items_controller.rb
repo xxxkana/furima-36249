@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
     @user = User.find_by(id: @item[:user_id]) 
 
     @message = Message.new
-    @messages = Message.all
+    @messages = @item.messages
 
     @tag = @item.tags[0]
 
